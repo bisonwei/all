@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>md5</title>
+    <link rel="shortcut icon" href="imgs/favicon.ico">
+    <link href="../paicclient/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../paicclient/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../paicclient/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- bootstrap-table-->
+	<link href="../paicclient/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../paicclient/css/animate.min.css" rel="stylesheet">
+    <link href="../paicclient/ui/css/style.min.css" rel="stylesheet">
+   <!-- ztree -->
+    <link href="../paicclient/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <!-- <link href="../paicclient/ztree/css/demo.css" rel="stylesheet">
+    <link href="../paicclient/ztree/css/awesomeStyle/awesome.css" rel="stylesheet">
+    <link href="../paicclient/ztree/css/metroStyle/metroStyle.css" rel="stylesheet">-->
+    
+    <link href="../paicclient/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <style>
+        #alertmod_table_list_1 {
+            top: 900px !important;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>MD5加密</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="typography.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="typography.html#">选项1</a>
+                                </li>
+                                <li><a href="typography.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                      
+                                <div class="form-group">
+                                    <label>需加密的字符串</label>
+                                    <input class="form-control" type="text" placeholder="需加密的字符串" id="str">
+								 </div>
+								 
+								  <div class="form-group">
+                                   <button class="btn btn-primary" type="button" id="encode">加密</button>
+                                   
+								 </div>
+                                <div class="form-group">
+                                	<label>结果</label>
+                                    <input class="form-control" type="text" placeholder="结果" id="result">
+                                </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<script src="../paicclient/bison.js"></script>
+<script src="../paicclient/js/bootstrap.min.js"></script>
+<script src="../paicclient/js/plugins/peity/jquery.peity.min.js"></script>
+<script src="../paicclient/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../paicclient/js/plugins/bootstrap-table/bootstrap-table.js"></script>
+<script src="../paicclient/js/plugins/bootstrap-table/bootstrap-table-locale-all.js"></script>
+<script src="../paicclient/js/plugins/bootstrap-table/bootstrap-table-export.js"></script>
+<script src="../paicclient/js/plugins/bootstrap-table/tableExport.js"></script>
+<script src="../paicclient/ui/content.min.js"></script>
+<script src="../paicclient/ztree/js/jquery.ztree.core.js"></script>
+<script src="../paicclient/ztree/js/jquery.ztree.excheck.js"></script>
+<script src="../paicclient/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="../paicclient/js/plugins/toastr/toastr.min.js"></script>
+<script src="js/md5Manage.js"></script>
+</body>
+</html>

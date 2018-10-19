@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>后台管理系统登陆</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type="image/x-icon" href="app/imgs/favicon.ico" rel="shortcut icon">
+    <link href="app/css/login.css" rel="stylesheet" media="screen and (max-width: 320px)">
+    <link href="app/css/login.css" rel="stylesheet" media="screen and (min-width: 321px) and (max-width: 640px)">
+    <link href="app/css/login.css" rel="stylesheet" media="screen and (min-width: 641px) and (max-width: 2560px)">
+    <link href="app/css/validate.css" type="text/css" rel="stylesheet">
+    <link href="paicclient/ui/css/style.min.css" rel="stylesheet">
+    <link href="paicclient/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+   
+    
+</head>
+
+<body>
+<div class="login_pop" id="pcLogin" style="">
+    <div class="login-logo">
+        <img src="app/imgs/login-logo.png">
+        <b/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="danceWord-s6 past">后台管理系统</span>
+    </div>
+    <div class="login-bg">
+        <div class="login-content">
+            <img src="app/imgs/login-img.png">
+            <div class="content-box">
+                <form role="form" id="loginForm">
+                    <input id="controlFlag" name="controlFlag" type="hidden" value="PC">
+                    <span></span>
+                    <p>后台管理系统</p>
+                    <div id="error-tip" class="error-tip"></div>
+                    <label>
+                        <span class="shade"></span>
+                        <input type="text" name="username" id="username" placeholder="请输入用户名">
+                    </label>
+                    <label>
+                        <span class="shade"></span>
+                        <input type="password" name="password" id="password" placeholder="请输入密码">
+                    </label>
+                    <label>
+                        <button id="sumbitBtn" type="button">登录</button>
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">有限公司<br>Copyright © 2018 All Rights Reserved</div>
+  
+</div>
+
+
+<script src="paicclient/bison.js"></script>
+<script src="paicclient/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="paicclient/login.js" type="text/javascript"></script>
+</body>
+</html>

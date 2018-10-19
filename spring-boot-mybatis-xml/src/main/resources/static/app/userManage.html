@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理</title>
+    <link rel="shortcut icon" href="imgs/favicon.ico">
+    <link href="../paicclient/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../paicclient/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../paicclient/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- jqgrid-->
+    <link href="../paicclient/css/plugins/jqgrid/ui.jqgrid.css" rel="stylesheet">
+
+    <link href="../paicclient/css/animate.min.css" rel="stylesheet">
+    <link href="../paicclient/ui/css/style.min.css" rel="stylesheet">
+    <link href="../paicclient/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <style>
+        #alertmod_table_list_1 {
+            top: 900px !important;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>用户管理</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="jqGrid_wrapper">
+                        <table id="table_list_1"></table>
+                        <div id="pager_list_1"></div>
+                    </div>
+                    <!-- 编辑用户 -->
+                    <div class="modal inmodal fade" id="updateUser" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" style="width:28%">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">编辑用户</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div  class="col-sm-6 column"  id="node">
+						                   <form class="form-horizontal m-t" id="functionForm">
+						                       <div class="form-group">
+						                       	<label>用户名(*)</label>
+						                           <input type="text" id="name" readonly class="form-control">
+						                       </div>
+						                       <div class="form-group ">
+						                           <label>密码(*)</label>
+						                           <input type="text" id="password" name="password" class="form-control required"
+						                                  placeholder="密码">
+						                       </div>
+						                       <div class="form-group">
+						                           <label>用户状态</label>
+						                           <div class="radio">
+						                               <label>
+						                                   <input type="radio" value="0" id="state1" name="state">
+						                                  	 激活
+						                               </label>
+						                               <label>
+						                                   <input type="radio" value="1" id="state2" name="state">
+						                                   	停用
+						                               </label>
+						                           </div>
+						                       </div>
+						                       <div class="form-group">
+						                           <label>创建时间</label>
+						                           <input type="text" id="create_time" readonly name="create_time" class="form-control"
+						                                  placeholder="默认:glyphicon glyphicon-flash">
+						                       </div>
+						                       <div class="form-group">
+						                           <label>更新时间</label>
+					                              <input type="text" id="create_time" readonly name="create_time" class="form-control"
+					                                  placeholder="编辑用户最后更改时间">
+						                       </div>
+						                   </form>
+            							</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" id="closeUpdateUser">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="doUpdateUser">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ztree -->
+                    <div class="modal inmodal fade" id="ztree_1" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" style="width:28%">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">分配权限</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!--ztree 权限树-->
+                                    请输入关键字: <input id="search_key" value="" class="empty"/>
+                                    <div>
+                            			<ul id="ztree" class="ztree"></ul> 
+                            		</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" id="close">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="save">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../paicclient/bison.js"></script>
+<script src="../paicclient/js/bootstrap.min.js"></script>
+<script src="../paicclient/js/plugins/peity/jquery.peity.min.js"></script>
+<script src="../paicclient/js/plugins/jqgrid/i18n/grid.locale.js"></script>
+<script src="../paicclient/js/plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="../paicclient/ui/content.min.js"></script>
+<script src="../paicclient/js/plugins/ztree/jquery.ztree.core.js"></script>
+<script src="../paicclient/js/plugins/ztree/jquery.ztree.excheck.js"></script>
+
+<script src="../paicclient/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="../paicclient/js/plugins/toastr/toastr.min.js"></script>
+<script src="js/userManage.js"></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传证书及签章规则设置</title>
+
+    <link href="../paicclient/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../paicclient/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../paicclient/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../paicclient/plugins/steps/jquery.steps.css" rel="stylesheet">
+    <link href="../paicclient/plugins/animate/animate.min.css" rel="stylesheet">
+    <link href="../paicclient/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="../paicclient/ui/css/style.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>上传证书及签章规则设置</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <p style="color: red">温馨提示：记录文件文件内容为[IP:证书名|IP:证书名...] 证书名包括扩展名</p>
+                    <form id="form" action="#" class="wizard-big">
+                        <h1>上传证书及签章规则</h1>
+                        <section class="scrollbar scrollbar-style">
+                            <div class="force-overflow-4">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>业务渠道号 *</label>
+                                        <input id="businessSource" name="businessSource" placeholder="业务渠道号" type="text"
+                                               value=""
+                                               class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>公司名称 *</label>
+                                        <input id="unitName" name="unitName" placeholder="用于制作电子印章证书" type="text"
+                                               class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>印章宽度 *</label>
+                                        <input id="sealWidth" name="sealWidth" type="text" placeholder="印章宽度"
+                                               class="form-control required number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>印章高度 *</label>
+                                        <input id="sealHeight" name="sealHeight" placeholder="印章高度" type="text"
+                                               class="form-control required number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>规则编号 *</label>
+                                        <input id="rule_num" name="rule_num" placeholder="规则编号" type="text"
+                                               class="form-control required">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>签章位置定位类型*</label>
+                                        <select id="rule_type" class="form-control required">
+                                        	<option value="1">关键字定位 </option>
+                                        	<option value="2" selected = "selected">坐标定位</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group"  id="pageNoGroup">
+                                        <label>页码 *</label>
+                                        <input id="pageNo" name="pageNo" type="text" 
+                                               placeholder="印章落在PDF第几页，1表示第1页，-1表示最后一页"
+                                               class="form-control required number">
+                                    </div>
+                                    <div class="form-group"  id="posXGroup">
+                                        <label>印章X点 *</label>
+                                        <input id="posX" name="posX" type="text"  placeholder="印章X坐标，印章图片中心在的PDF位置"
+                                               class="form-control required number">
+                                    </div>
+                                    <div class="form-group"  id="posYGroup">
+                                        <label>印章Y点 *</label>
+                                        <input id="posY" name="posY" type="text"  placeholder="印章Y坐标，印章图片中心在的PDF位置"
+                                               class="form-control required number">
+                                    </div>
+                                    <div class="form-group"  id="keyWordGroup" style="display:none">
+                                        <label>关键字*</label>
+                                        <input id="keyWord" name="keyWord" type="text"  placeholder="关键字"
+                                               class="form-control required">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                	<div class="form-group">
+                                        <label>公司信用代码 *</label>
+                                        <input id="social_credit_code" name="social_credit_code" placeholder="公司信用代码 " type="text"
+                                               class="form-control required">
+                                    </div>
+                                	<div class="form-group">
+                                        <label>章名称 *</label>
+                                        <input id="rule_name" name="rule_name" placeholder="章名称" type="text"
+                                               class="form-control required">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label>印章偏移类型*</label>
+                                        <select id="moveType" class="form-control required">
+                                        	<option value="0">不设置 </option>
+                                        	<option value="1">重叠 </option>
+                                        	<option value="2">居下 </option>
+                                        	<option value="3">居右 </option>
+                                        </select>
+                                    </div>
+                                     <div class="form-group" style="display:none" id="moveSizeGroup">
+                                        <label>左右偏移 *</label>
+                                        <input id="moveSize" name="moveSize" placeholder="印章左右偏移大小,默认为0" type="text"
+                                               class="form-control required number">
+                                    </div>
+                                     <div class="form-group" style="display:none" id="heightMoveSizeGroup">
+                                        <label>上下偏移  *</label>
+                                        <input id="heightMoveSize" name="heightMoveSize" placeholder="印章上下偏移大小,默认为0" type="text"
+                                               class="form-control required number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>多章设置 *</label>
+                                        <select id="encryption" name="encryption" class="form-control required">
+                                            <option value="true" selected>禁用</option>
+                                            <option value="false">启用</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>印章图片 *</label>
+                                        <div class="input-group" style="display: flex;">
+                                            <input id="sealImgFilePath" name="sealImgFilePath" type="text"
+                                                   placeholder="选择印章图片" readonly
+                                                   class="form-control required"/>
+                                            <input id="sealImgFile" type="file" accept=".png,.gif"
+                                                   style="display: none">
+                                            <button id="btn-sealImgFile" type="button" class="btn btn-w-m btn-success">
+                                                选择图片
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>PDF *</label>
+                                        <div class="input-group" style="display: flex;">
+                                            <input id="pdfPath" name="pdfPath" type="text" placeholder="选择PDF" readonly
+                                                   class="form-control required"/>
+                                            <input id="pdfFile" type="file" accept=".pdf" style="display: none">
+                                            <button id="btn-pdfPath" type="button" class="btn btn-w-m btn-success">
+                                                选择PDF
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>选择记录文件 *</label>
+                                        <div class="input-group" style="display: flex;">
+                                            <input id="uploadFilePath" name="uploadFilePath" type="text"
+                                                   placeholder="IP:证书名|IP:证书名..." readonly
+                                                   class="form-control required"/>
+                                            <input id="uploadFile" type="file" accept=".txt" style="display: none">
+                                            <button id="btn-uploadFilePath" type="button"
+                                                    class="btn btn-w-m btn-success">
+                                                选择文件
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>选择所有证书 * (由北京CA制作证书)</label>
+                                        <div class="input-group" style="display: flex;">
+                                            <input id="uploadCerPath" name="uploadCerPath" type="text"
+                                                   placeholder="选择所有证书" readonly
+                                                   class="form-control required"/>
+                                            <input id="uploadCer" type="file" multiple="multiple" accept=".cer"
+                                                   style="display: none">
+                                            <button id="btn-uploadCerPath" type="button"
+                                                    class="btn btn-w-m btn-success">
+                                                选择文件
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>是否更新证书 *</label>
+                                        <select id="updateCert" name="updateCert" class="form-control required">
+                                            <option value="1" selected>否</option>
+                                            <option value="2">是</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h1>签章并预览</h1>
+                        <section class="scrollbar scrollbar-style">
+                            <div id="download-pdf-preview" class="force-overflow-2">
+                                <div class="loading">
+                                    <div class="sk-spinner sk-spinner-chasing-dots">
+                                        <div class="sk-dot1"></div>
+                                        <div class="sk-dot2"></div>
+                                    </div>
+                                </div>
+                                <embed src="#" height=100% width=100% style="display: none"/>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a id="downloadPdf" download  href="#" target="_blank" style="display: none"><span>pdf文件下载</span></a>
+
+<script src="../paicclient/bison.js"></script>
+<script src="../paicclient/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../paicclient/ui/content.min.js"></script>
+<script src="../paicclient/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="../paicclient/plugins/staps/jquery.steps.min.js"></script>
+<script src="../paicclient/plugins/validate/jquery.validate.min.js"></script>
+<script src="../paicclient/plugins/validate/messages_zh.min.js"></script>
+<script src="js/pdfSign03.js"></script>
+</body>
+</html>

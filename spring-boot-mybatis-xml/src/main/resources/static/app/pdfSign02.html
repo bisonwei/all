@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base64编码证书转der编码证书</title>
+
+    <link href="../paicclient/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../paicclient/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../paicclient/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../paicclient/plugins/steps/jquery.steps.css" rel="stylesheet">
+    <link href="../paicclient/plugins/animate/animate.min.css" rel="stylesheet">
+    <link href="../paicclient/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="../paicclient/ui/css/style.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>证书编码转换</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <p style="color: red">温馨提示：选择记录文件,选择所有证书() </p>
+                    <form id="uploadForm" class="upload-ibox">
+                        <div class="form-group">
+                                        <label>选择记录文件 *</label>
+                                        <div class="input-group" style="display: flex;">
+                                            <input id="uploadFilePath" name="uploadFilePath" type="text"
+                                                   placeholder="IP:证书名|IP:证书名..." readonly
+                                                   class="form-control required"/>
+                                            <input id="uploadFile" type="file" accept=".txt" style="display: none">
+                                            <button id="btn-uploadFilePath" type="button"
+                                                    class="btn btn-w-m btn-success">
+                                                选择文件
+                                            </button>
+                                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label>选择所有证书 * (由北京CA制作base64编码证书)</label>
+                            <div class="input-group" style="display: flex;">
+                                <input id="uploadCerPath" name="uploadCerPath" type="text"
+                                       placeholder="选择所有证书" readonly
+                                       class="form-control required"/>
+                                <input id="uploadCer" type="file" multiple="multiple" accept=".cer"
+                                       style="display: none">
+                                <button id="btn-uploadCerPath" type="button"
+                                        class="btn btn-w-m btn-success">
+                                    选择文件
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button id="converted" type="button"
+                                        class="btn btn-w-m btn-success">
+                                   	 编码格式转换
+                                </button>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<a id="downloadCers" download  href="#" target="_blank" style="display: none"><span>der编码证书zip下载</span></a>
+<script src="../paicclient/bison.js"></script>
+<script src="../paicclient/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../paicclient/ui/content.min.js"></script>
+<script src="../paicclient/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="../paicclient/plugins/staps/jquery.steps.min.js"></script>
+<script src="../paicclient/plugins/validate/jquery.validate.min.js"></script>
+<script src="../paicclient/plugins/validate/messages_zh.min.js"></script>
+<script src="js/pdfSign02.js"></script>
+</body>
+</html>

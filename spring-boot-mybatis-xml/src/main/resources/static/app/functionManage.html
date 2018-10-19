@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>权限ztree树形视图</title>
+   <link href="../paicclient/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../paicclient/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../paicclient/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- bootstrap-table-->
+	<link href="../paicclient/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../paicclient/css/animate.min.css" rel="stylesheet">
+    <link href="../paicclient/ui/css/style.min.css" rel="stylesheet">
+   <!-- ztree -->
+    <link href="../paicclient/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <!-- <link href="../paicclient/ztree/css/demo.css" rel="stylesheet">
+    <link href="../paicclient/ztree/css/awesomeStyle/awesome.css" rel="stylesheet">
+    <link href="../paicclient/ztree/css/metroStyle/metroStyle.css" rel="stylesheet">-->
+    
+    <link href="../paicclient/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+   
+</head>
+<body class="gray-bg">
+ <div class="ibox float-e-margins">
+      <div class="ibox-title">
+          <h5>ztree权限树</h5>
+      </div>
+      <!--ztree 权限树-->
+     <div class="ibox-content" style="height:800px">
+         <div class="row">
+             <!-- <div id="jstree" class="col-sm-6 column"></div> -->
+             <div class="col-sm-6 column">
+               <ul id="ztree" class="ztree"></ul> 
+             </div>
+             <div  class="col-sm-6 column"  id="node">
+              	<button class="btn btn-primary" type="button" id="addFcnBtn">
+                  	增加权限
+              	</button>  
+                    <form class="form-horizontal m-t" id="functionForm">
+                        <div class="form-group">
+                        	 <label>id(*)</label>
+                            <input type="text" id="id"  readonly class="form-control">
+                        </div>
+                        <div class="form-group">
+                        	<label>parent_id(*)</label>
+                            <input type="text" id="parent_id" readonly class="form-control">
+                        </div>
+                        <div class="form-group ">
+                            <label>权限名称(*)</label>
+                            <input type="text" id="name" name="name" class="form-control required"
+                                   placeholder="权限名称">
+                        </div>
+                        <div class="form-group">
+                            <label>权限页面</label>
+                            <input type="text" id="param" name="param" class="form-control"
+                                   placeholder="格式：app/*.html">
+                        </div>
+                        <div class="form-group">
+                            <label>权限图标</label>
+                            <input type="text" id="icon" name="icon" class="form-control"
+                                   placeholder="默认:glyphicon glyphicon-flash">
+                        </div>
+                        <div class="form-group">
+                            <label>状态(*)</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" value="0" id="state1" name="state">
+                                   	 激活
+                                </label>
+                                <label>
+                                    <input type="radio" value="1" id="state2" name="state">
+                                    	停用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>权限类型(*)</label>
+                            <input type="text" id="type" name="type" class="form-control required number"
+                            		placeholder="0表示显示页面,1表示隐藏页面">
+                        </div>
+                        <div class="form-group">
+                        	<label>排列序号(*)</label>
+                            <input type="text" id="view_pos" name="view_pos"  class="form-control required number">
+                        </div>
+                    </form>
+                  <button class="btn btn-primary"  type="button" id="updateFcnBtn">
+                  	保存
+              	</button>   
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../paicclient/bison.js"></script>
+<script src="../paicclient/js/bootstrap.min.js"></script>
+<script src="../paicclient/js/plugins/peity/jquery.peity.min.js"></script>
+<script src="../paicclient/ui/content.min.js"></script>
+<script src="../paicclient/ztree/js/jquery.ztree.core.js"></script>
+<script src="../paicclient/ztree/js/jquery.ztree.excheck.js"></script>
+<script src="../paicclient/ztree/js/jquery.ztree.exedit.js"></script>
+<script src="../paicclient/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="../paicclient/js/plugins/toastr/toastr.min.js"></script>
+<!-- 表单验证 -->
+<script src="../paicclient/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../paicclient/js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/functionManage.js"></script>
+
+</body>
+</html>

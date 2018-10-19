@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neo.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.neo.entity.UserEntity" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+    </resultMap>
+     <resultMap id="FunctionEntity" type="com.neo.entity.FunctionEntity" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"  />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="param" property="param" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="BIGINT" />
+        <result column="type" property="type" jdbcType="BIGINT"  />
+        <result column="view_pos" property="viewPos" jdbcType="BIGINT"  />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, userName, passWord, user_sex, nick_name
+    </sql>
+
+	 <select id="queryUserAllFunctionsByUserName" parameterType="java.lang.String" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT * FROM um_function
+	   WHERE id in ( select function_id from um_userauthority where user_id =(select id from um_user where user_name = #{user_name}));
+    </select>
+    <select id="getUserByUserName" parameterType="java.lang.String" resultType="com.alibaba.fastjson.JSONObject" >
+        SELECT * FROM um_user WHERE user_name = #{user_name}
+    </select>
+    
+    <select id="queryUsers1" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.alibaba.fastjson.JSONObject" >
+        SELECT * FROM um_user  where state != '2' order by create_time DESC ,#{sortname},#{sortorder} limit #{count} offset #{start_num}
+    </select>
+	 <select id="queryUsers2" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.alibaba.fastjson.JSONObject" >
+        SELECT * FROM um_user WHERE UPPER(${searchField}) ${searchOper}  UPPER(#{searchString}) 
+        order by create_time DESC ,${sortname} ${sortorder}
+        limit #{count} offset #{start_num}
+    </select>
+    
+    <select id="mulCdtqueryUsers" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.alibaba.fastjson.JSONObject" >
+        SELECT * FROM um_user 
+        <where>
+        	<if test="user_name !=null and user_name !='' "> and user_name = #{user_name}</if>
+        	<if test="create_start_time !=null and create_start_time !='' "> and create_time &gt; #{create_start_time}</if>
+        	<if test="create_end_time !=null and create_end_time !='' "> and create_time &lt; #{create_end_time}</if>
+        	<if test="update_start_time !=null and update_start_time !='' "> and update_time &lt; #{update_start_time}</if>
+        	<if test="update_end_time !=null and update_end_time !='' "> and update_time &lt; #{update_start_time}</if>
+        	<if test="state !=null and state !='' "> and state = #{state}</if>
+        	<if test="state ==null or state =='' "> and state != 2</if>
+        </where>
+        order by create_time DESC 
+        limit #{limit} offset #{offset}
+    </select>
+    <select id="mulCdtqueryUsersCount" parameterType="com.alibaba.fastjson.JSONObject" resultType="java.lang.Integer" >
+        SELECT count(*) FROM um_user 
+        <where>
+        	<if test="user_name !=null and user_name !='' "> and user_name = #{user_name}</if>
+        	<if test="create_start_time !=null and create_start_time !='' "> and create_time &gt; #{create_start_time}</if>
+        	<if test="create_end_time !=null and create_end_time !='' "> and create_time &lt; #{create_end_time}</if>
+        	<if test="update_start_time !=null and update_start_time !='' "> and update_time &lt; #{update_start_time}</if>
+        	<if test="update_end_time !=null and update_end_time !='' "> and update_time &lt; #{update_start_time}</if>
+        	<if test="state !=null and state !='' "> and state = #{state}</if>
+        	<if test="state ==null or state =='' "> and state != 2</if>
+        </where>
+    </select>
+     <update id="delUser" parameterType="java.lang.Integer" >
+       UPDATE 
+       		um_user 
+       SET 
+       	state = 2
+       WHERE 
+       	id = #{id}
+    </update>
+    <select id="queryUserById" parameterType="java.lang.Integer" resultType="com.alibaba.fastjson.JSONObject" >
+        SELECT * FROM um_user  where state != '2' and id = #{id}
+    </select>
+    <update id="editUser" parameterType="com.alibaba.fastjson.JSONObject" >
+       UPDATE 
+       		um_user 
+       <set>  
+       	<if test="user_name !=null and user_name !='' "> user_name = #{user_name},</if>
+       	<if test="password != null and password !=''  ">password = #{password},</if>
+       	<if test="state != null and state !='' ">state = #{state},</if>
+       	<if test="update_time == null or update_time =='' ">update_time = now(),</if>
+       </set>
+       WHERE 
+       		id = #{id}
+    </update>
+    <insert id="addUser" parameterType="com.alibaba.fastjson.JSONObject">
+    	insert into um_user 
+    	(user_name,password,state,create_time,update_time)
+    	values
+    	(#{user_name},#{password},#{state},now(),now())
+    </insert>
+    <select id="queryAllFunctions"  resultType="com.alibaba.fastjson.JSONObject" >
+        SELECT * FROM um_function  
+    </select>
+    <delete id="delUserAuthority" parameterType="java.lang.Integer">
+    	delete from um_userauthority where user_id = #{id}
+    </delete>
+    <insert id="insertUserAuthority" parameterType="com.alibaba.fastjson.JSONObject">
+    	insert into um_userauthority 
+    	(user_id,function_id)
+    	values
+    	(#{user_id},#{function_id})
+    </insert>
+</mapper>
